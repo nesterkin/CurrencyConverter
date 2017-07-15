@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Currency converter</string>
+    <string name="convert_button">Convert</string>
+    <string name="hint_edit_text">Enter value for conversion</string>
+    <string name="result_hint_text_view">Result</string>
+    <string name="connection_error_text_view">Unable to load, check your connection</string>
+    <string name="from_text_view">from</string>
+    <string name="to_text_view">to</string>
+</resources>
