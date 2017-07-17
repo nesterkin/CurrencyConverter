@@ -17,6 +17,6 @@ public class CurrencyApp extends Application {
     }
 
     public void setConnectivityListener(ConnectivityReceiver.ConnectivityReceiverListener listener) {
-        ConnectivityReceiver.connectivityReceiverListener = listener;
+        ConnectivityReceiver.setListener(listener);
     }
 }

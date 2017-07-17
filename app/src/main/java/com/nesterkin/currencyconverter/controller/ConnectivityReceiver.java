@@ -6,12 +6,18 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import java.lang.ref.WeakReference;
+
 public class ConnectivityReceiver extends BroadcastReceiver {
 
-    public static ConnectivityReceiverListener connectivityReceiverListener;
+    private static WeakReference<ConnectivityReceiverListener> connectivityReceiverListener;
 
     public ConnectivityReceiver() {
         super();
+    }
+
+    public static void setListener (ConnectivityReceiverListener listener) {
+        connectivityReceiverListener = new WeakReference<>(listener);
     }
 
     @Override
@@ -22,7 +28,10 @@ public class ConnectivityReceiver extends BroadcastReceiver {
         boolean isConnected = networkInfo != null && networkInfo.isConnectedOrConnecting();
 
         if (connectivityReceiverListener != null) {
-            connectivityReceiverListener.onNetworkConnectionChanged(isConnected);
+            ConnectivityReceiverListener listener = connectivityReceiverListener.get();
+            if (listener != null) {
+                listener.onNetworkConnectionChanged(isConnected);
+            }
         }
     }
 
